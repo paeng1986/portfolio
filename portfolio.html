@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafael Gustavo Mirasol – Senior Software Engineer</title>
+<meta name="description" content="Portfolio of Rafael Gustavo Mirasol, Senior Software Engineer with 8+ years in Laravel, Python/FastAPI, React and Linux automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* one token set per section: background, text, muted text, accent, line */
+.hero,.about,.exp,.road,.work,.skills,.contact{--ink:#1D3557;--muted:#5C677D;--accent:#D90429;--line:#DDE2E8;--on:#FFFFFF}
+.hero,.exp,.work{--bg:#FFFFFF}
+.about,.road,.skills{--bg:#F8F9FA}
+.contact{--bg:#1D3557;--ink:#FFFFFF;--muted:#C9D2DF;--accent:#FF8A9A;--line:#3B5378;--on:#FFFFFF}
+
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;font-family:var(--body);font-size:1.1875rem;line-height:1.6}
+a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:4px;text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.s{min-height:0;display:flex;align-items:center;padding:clamp(3.5rem,7vw,5rem) 0;background:var(--bg);color:var(--ink)}
+.s.hero{min-height:100svh;text-align:center}
+.exp h2,.road h2{text-align:center}
+.s h2{font-size:clamp(2.2rem,6vw,3.75rem);font-weight:800;letter-spacing:-.03em;margin-bottom:clamp(1.5rem,4vw,2.5rem)}
+.s p{margin:0 0 1rem;max-width:36em}
+.muted{color:var(--muted)}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:30;pointer-events:none}
+.progress i{display:block;height:100%;background:#D90429;transform-origin:0 50%;transform:scaleX(0)}
+
+/* section navigation: icon rail, the highlighted item grows to show its name */
+.dots{position:fixed;right:max(.6rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:20;width:48px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding:4px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #C5D0D9;box-shadow:0 2px 10px rgba(15,27,38,.1);border-radius:999px}
+.dots a{position:relative;display:flex;flex-direction:row-reverse;align-items:center;height:40px;border-radius:999px;color:#1D3557;text-decoration:none;white-space:nowrap;transition:background-color .25s,color .25s,box-shadow .25s}
+.dots .ic{display:grid;place-items:center;width:40px;height:40px;flex:none}
+.dots svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.dots .lbl{max-width:0;opacity:0;overflow:hidden;padding-left:0;font-family:var(--display);font-weight:700;font-size:.9rem;letter-spacing:.01em;transition:max-width .35s var(--ease),opacity .2s,padding-left .35s var(--ease)}
+.dots a:focus-visible{background:#fff;box-shadow:0 0 0 1px #C5D0D9,0 6px 16px rgba(15,27,38,.18);outline-color:#D90429}
+.dots a:focus-visible .lbl{max-width:9rem;opacity:1;padding-left:1rem}
+@media (hover:hover){
+  .dots a:hover{background:#fff;box-shadow:0 0 0 1px #C5D0D9,0 6px 16px rgba(15,27,38,.18)}
+  .dots a:hover .lbl{max-width:9rem;opacity:1;padding-left:1rem}
+  .dots a:hover .ic svg{transform:scale(1.12)}
+}
+.dots a[aria-current="true"],
+.dots a[aria-current="true"]:hover{background:#D90429;color:#fff;box-shadow:0 4px 14px rgba(217,4,41,.35)}
+@media (prefers-reduced-motion:no-preference){
+  .dots a[aria-current="true"] .ic svg{animation:navpop .45s var(--ease)}
+}
+@keyframes navpop{0%{transform:scale(.6) rotate(-12deg)}60%{transform:scale(1.25) rotate(4deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.dots a,.dots .lbl,.dots svg{transition:none}}
+
+/* hero */
+.s.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+  .hero::before{width:38vmax;height:38vmax;left:-10vmax;top:-8vmax;background:rgba(217,4,41,.10);animation:drift 16s ease-in-out infinite alternate}
+  .hero::after{width:42vmax;height:42vmax;right:-14vmax;bottom:-14vmax;background:rgba(29,53,87,.11);animation:drift 20s ease-in-out infinite alternate-reverse}
+}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(6vmax,4vmax) scale(1.15)}}
+.hero .grid{max-width:900px;margin:0 auto}
+.hero .who{display:inline-block;position:relative;isolation:isolate;font-family:var(--display);font-size:clamp(1.75rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1;padding:.2em .6em;color:var(--ink);margin:0 0 clamp(1.25rem,3vw,2rem);max-width:none}
+.hero .who::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--accent),var(--accent)),linear-gradient(var(--accent),var(--accent)),linear-gradient(var(--accent),var(--accent)),linear-gradient(var(--accent),var(--accent));background-repeat:no-repeat;background-position:left bottom,right bottom,right top,left top;background-size:100% 3px,3px 100%,100% 3px,3px 100%}
+@media (prefers-reduced-motion:no-preference){
+  .hero .who::after{animation:whoBorder 1.6s .5s linear both}
+}
+@keyframes whoBorder{
+  0%{background-size:25% 3px,3px 0,0 3px,3px 0}
+  25%{background-size:100% 3px,3px 0,0 3px,3px 0}
+  50%{background-size:100% 3px,3px 100%,0 3px,3px 0}
+  75%{background-size:100% 3px,3px 100%,100% 3px,3px 0}
+  100%{background-size:100% 3px,3px 100%,100% 3px,3px 100%}
+}
+.hero .name{font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.role{font-family:var(--display);font-weight:500;font-size:clamp(1.2rem,2.4vw,1.6rem);margin:1.25rem 0 .75rem;color:var(--muted)}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:1.75rem}
+.btn{display:inline-flex;align-items:center;min-height:48px;font-family:var(--display);font-weight:700;font-size:1rem;padding:0 1.4rem;border:2px solid var(--ink);border-radius:4px;text-decoration:none;color:var(--ink);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .25s,color .25s}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(29,53,87,.18)}
+.btn:not(.primary):hover{background:var(--ink);color:#fff}
+.btn:active{transform:translateY(0);box-shadow:none}
+.sticker{background:#fff;color:#1D3557;border:2px solid #1D3557;border-radius:6px;padding:1.25rem 1.4rem;font-family:var(--display);font-size:.98rem;box-shadow:6px 6px 0 #D90429}
+.sticker .head{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.8rem;border-bottom:2px solid #1D3557;font-weight:800;font-size:1.1rem}
+.sticker .head span:last-child{font-weight:500;color:#5C677D}
+.chk{display:grid;grid-template-columns:1.6rem 1fr;gap:.2rem .6rem;padding:.7rem 0;border-bottom:1px solid #D5DDE4}
+.chk b{display:block;font-weight:700}
+.chk small{color:#5C677D;font-size:.9rem}
+.tick{width:1.35rem;height:1.35rem;border-radius:50%;border:2px solid #73879A;position:relative;margin-top:.1rem}
+.tick::after{content:"";position:absolute;left:.33rem;top:.1rem;width:.34rem;height:.66rem;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);opacity:0}
+.result{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;font-weight:800}
+.result em{font-style:normal;background:#1D3557;color:#fff;padding:.15rem .8rem;border-radius:3px;opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .tick{animation:fill .01s forwards;animation-delay:calc(var(--i)*.55s + .5s)}
+  .tick::after{animation:show .01s forwards;animation-delay:calc(var(--i)*.55s + .5s)}
+  .result em{animation:show .3s forwards;animation-delay:2.9s}
+}
+@media (prefers-reduced-motion:reduce){.tick{background:#1D3557;border-color:#1D3557}.tick::after,.result em{opacity:1}}
+@keyframes fill{to{background:#1D3557;border-color:#1D3557}}
+@keyframes show{to{opacity:1}}
+
+/* about */
+.facts{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2rem}
+.facts div{font-family:var(--display)}
+.facts strong{display:block;font-size:3rem;font-weight:800;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.facts span{color:var(--muted);font-size:1rem;display:block;max-width:11em}
+
+.about-grid{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:clamp(2.5rem,6vw,4.5rem);align-items:center}
+.photo{margin:0;width:100%;max-width:360px;aspect-ratio:4/5;background:#1D3557;border-radius:6px;box-shadow:12px 12px 0 var(--accent);overflow:hidden}
+.photo svg,.photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+@media (hover:hover){.photo:hover svg,.photo:hover img{transform:scale(1.06)}}
+.details{margin:2rem 0 0;padding-top:1.25rem;border-top:2px solid var(--ink);display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.5rem;font-size:1.05rem}
+.details dt{font-family:var(--display);font-weight:700}
+.details dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
+.details a{color:inherit}
+
+/* experience */
+.s.exp{min-height:0;padding:clamp(2.5rem,6vw,4rem) 0}
+.pos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:2.5rem 1.75rem}
+.pos li{border-top:2px solid var(--ink);padding-top:1.5rem}
+.ico{width:56px;height:56px;border-radius:50%;background:#F8F9FA;border:1px solid var(--line);display:grid;place-items:center;margin-bottom:1.25rem;transition:background-color .3s,border-color .3s,transform .4s var(--ease)}
+.ico svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+@media (hover:hover){
+  .pos li:hover .ico{background:var(--accent);border-color:var(--accent);transform:translateY(-4px) rotate(-6deg)}
+  .pos li:hover .ico svg{stroke:#fff}
+}
+.pos h3{font-size:1.25rem;font-weight:700;margin-bottom:.4rem}
+.pos .org{margin:0 0 .5rem;color:var(--muted);font-family:var(--display);font-weight:500;font-size:1rem}
+.pos time{font-family:var(--display);font-size:.95rem;color:var(--muted)}
+@media (max-width:1000px){.pos{grid-template-columns:repeat(3,1fr)}}
+
+/* roadmap */
+.s.road{min-height:0;padding:clamp(3rem,7vw,5rem) 0}
+.road-list{position:relative;list-style:none;margin:0;padding:0}
+.road-list::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-1px);background:#B8C1CE}
+.road-list::after{content:"";position:absolute;left:50%;top:0;width:2px;height:calc(var(--p,1)*100%);transform:translateX(-1px);background:var(--accent);border-radius:2px}
+.step{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:start;padding:1.75rem 0}
+.step::before{content:"";position:absolute;left:50%;top:2.9rem;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--accent);transform:translate(-50%,-50%);z-index:1}
+.step .when{grid-column:1;grid-row:1;text-align:right;padding-right:3rem;line-height:1.1;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.5vw,2.25rem);letter-spacing:-.02em}
+.step .detail{grid-column:2;grid-row:1;padding-left:3rem}
+.step.alt .detail{grid-column:1;text-align:left;padding:0 3rem 0 0}
+.step.alt .when{grid-column:2;text-align:left;padding:0 0 0 3rem}
+.detail h3{font-size:1.35rem;font-weight:700}
+.detail .org{margin:.2rem 0 .4rem}
+.detail p{margin:0;max-width:22em;color:var(--muted);font-size:1.05rem}
+.detail ul{list-style:none;margin:.9rem 0 0;padding:0}
+.detail li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:var(--muted);font-size:1.05rem;line-height:1.5}
+.detail li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:#8D99AE}
+@media (max-width:760px){
+  .road-list::before,.road-list::after{left:9px}
+  .step{grid-template-columns:1fr;padding:1.25rem 0 1.25rem 2.5rem}
+  .step::before{left:9px;top:2.2rem}
+  .step .when,.step.alt .when{grid-column:1;grid-row:1;text-align:left;padding:0 0 .35rem}
+  .step .detail,.step.alt .detail{grid-column:1;grid-row:2;text-align:left;padding:0}
+  .step.alt .detail p{margin-left:0}
+}
+
+/* work */
+.projects{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 3rem}
+.projects li{padding:1.25rem 0;border-top:2px solid var(--ink);transition:border-color .3s}
+.projects li:first-child{grid-column:1/-1}
+.projects li:first-child h3{font-size:1.9rem}
+.projects h3{font-size:1.3rem;font-weight:700;margin-bottom:.35rem;transition:transform .4s var(--ease),color .3s}
+.projects p{margin:0;color:var(--muted)}
+@media (hover:hover){
+  .projects li:hover{border-top-color:var(--accent)}
+  .projects li:hover h3{transform:translateX(8px);color:var(--accent)}
+}
+
+/* skills */
+.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem 3rem}
+.groups h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips span{font-family:var(--display);font-size:.92rem;font-weight:500;padding:.25rem .7rem;border:1px solid var(--line);border-radius:999px;transition:transform .25s var(--ease),border-color .25s,background-color .25s,color .25s}
+@media (hover:hover){.chips span:hover{transform:translateY(-3px);border-color:var(--accent);background:var(--accent);color:#fff}}
+
+/* contact */
+.mail{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,5vw,3rem);letter-spacing:-.02em;word-break:break-word;display:inline-block;transition:transform .35s var(--ease),text-decoration-color .3s}
+@media (hover:hover){.mail:hover{transform:translateX(8px)}}
+.info{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.75rem}
+.info li{display:flex;gap:.75rem;align-items:center}
+.info svg{width:24px;height:24px;flex:none;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.foot{margin-top:3rem;font-family:var(--display);font-size:.9rem;color:var(--muted)}
+
+/* scroll reveal (only active when scripting is on and motion is allowed) */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease) var(--d,0s),transform .8s var(--ease) var(--d,0s)}
+.js .rv-l{transform:translateX(-36px)}
+.js .rv-r{transform:translateX(36px)}
+.js .rv-s{transform:scale(.94) translateY(18px)}
+.js .rv.in{opacity:1;transform:none}
+.js .step::before{border-color:#B8C1CE}
+.js .step.in::before{border-color:var(--accent);animation:dotpop .6s var(--ease)}
+@keyframes dotpop{0%{transform:translate(-50%,-50%) scale(.3)}60%{transform:translate(-50%,-50%) scale(1.5)}100%{transform:translate(-50%,-50%) scale(1)}}
+
+@media (max-width:760px){
+  .hero .grid,.job,.projects,.groups,.about-grid,.pos{grid-template-columns:1fr}
+  .wrap{padding-right:calc(clamp(1.25rem,5vw,3rem) + 40px)}
+  .dots{width:42px;right:.4rem;padding:3px}
+  .dots a,.dots .ic{height:36px}
+  .dots .ic{width:36px}
+  .js .rv-l,.js .rv-r{transform:translateY(26px)}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<nav class="dots" aria-label="Page sections">
+  <a href="#home" aria-current="true"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></span><span class="lbl">Home</span></a>
+  <a href="#about"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><span class="lbl">About</span></a>
+  <a href="#experience"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="lbl">What I do</span></a>
+  <a href="#journey"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="lbl">Experience</span></a>
+  <a href="#work"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><span class="lbl">Selected work</span></a>
+  <a href="#skills"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></span><span class="lbl">Skills</span></a>
+  <a href="#contact"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="lbl">Contact</span></a>
+</nav>
+
+<main>
+<section class="s hero" id="home"><div class="wrap"><div class="grid">
+  <div>
+    <p class="who">WHO I AM</p>
+    <h1 class="name">I’m Rafael Gustavo Mirasol.</h1>
+    <div class="role">Senior Software Engineer</div>
+    <div class="btns">
+      <a class="btn primary" href="mailto:rafaelmirasol.1986@gmail.com">Email me</a>
+      <a class="btn" href="#experience">See what I do</a>
+    </div>
+  </div>
+</div></div></section>
+
+<section class="s about" id="about"><div class="wrap"><div class="about-grid">
+  <figure class="photo">
+    <img src="image.jpg" alt="logo">
+  </figure>
+  <div>
+  <h2>About</h2>
+  <p>I have spent more than eight years designing, developing and maintaining software for healthcare, education, logistics and operations management. I like picking up a complex business application, finding out how it really works, and making it easier to maintain.</p>
+  <p>My background covers object-oriented design, database architecture, REST APIs, Linux server administration and legacy system upgrades. I work comfortably with distributed international teams and have led projects from architecture through deployment.</p>
+  <div class="facts">
+    <div><strong>8+</strong><span>years in software</span></div>
+    <div><strong>2</strong><span>regions served by one time tracking system</span></div>
+    <div><strong>4</strong><span>industries: healthcare, education, logistics, operations</span></div>
+  </div>
+  <dl class="details">
+    <dt>Name</dt><dd>Rafael Gustavo Mirasol</dd>
+    <dt>Title</dt><dd>Senior Software Engineer</dd>
+    <dt>Based in</dt><dd>Carmen, Cagayan de Oro, Philippines 9000</dd>
+    <dt>Email</dt><dd><a href="mailto:rafaelmirasol.1986@gmail.com">rafaelmirasol.1986@gmail.com</a></dd>
+    <dt>Phone</dt><dd><a href="tel:+639971833289">+63 997 183 3289</a></dd>
+    <dt>Education</dt><dd>BS in Information Technology, STI College CDO, 2018</dd>
+  </dl>
+  </div>
+</div></div></section>
+
+<section class="s exp" id="experience"><div class="wrap">
+  <h2>What I do</h2>
+  <ul class="pos">
+    <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14l-2 2 2 2M15 14l2 2-2 2"/></svg></span><h3>Web Developer</h3></li>
+    <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></span><h3>Web Designer</h3></li>
+    <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span><h3>Software Developer</h3></li>
+    <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1"/><path d="M9 13v2M15 13v2M2 14h2M20 14h2"/></svg></span><h3>Agentic AI Engineer</h3></li>
+    <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><h3>Automation Engineer</h3></li>
+  </ul>
+</div></section>
+
+<section class="s road" id="journey"><div class="wrap">
+  <h2>Experience</h2>
+  <ol class="road-list">
+    <li class="step"><div class="when">2018 – 2021</div><div class="detail"><h3>IT Instructor / IT Lecturer</h3><div class="org">Informatics Computer Institute, Cagayan de Oro, Philippines</div><ul><li>Taught a wide range of IT subjects to college students and Senior High School (Grade 11 and 12) students specializing in ICT, covering both theory and hands-on learning.</li><li>Delivered lessons in programming, computer systems, networking, database management and basic web development tailored to students’ skill levels.</li><li>Designed engaging learning materials and practical exercises to improve understanding and industry readiness.</li><li>Provided academic support and mentorship on capstone projects, technical assignments and ICT specialization tracks.</li></ul></div></li>
+    <li class="step alt"><div class="when">2021 – 2022</div><div class="detail"><h3>Application Developer</h3><div class="org">Cerebro Diagnostic Center, Cagayan de Oro, Philippines</div><ul><li>Developed and maintained in-house Time Tracking and Salary Management applications to streamline employee attendance and payroll.</li><li>Provided technical support and enhancements for the hospital’s existing information system, keeping it running and adapting features to changing requirements.</li><li>Implemented Git version control to manage codebase changes, support collaboration and keep production deployments stable.</li><li>Worked closely with administrative and medical staff to gather requirements, resolve issues and improve the user experience of internal applications.</li><li>Maintained and enhanced internal applications built in Delphi, including troubleshooting code, implementing feature updates and supporting business operations.</li></ul></div></li>
+    <li class="step"><div class="when">2022 – 2026</div><div class="detail"><h3>Senior Software Engineer</h3><div class="org">Unixsurplus Inc., California, USA</div><ul><li>Led the architecture, development and maintenance of a cross-regional Time Tracking System supporting both Philippine and U.S.-based operations.</li><li>Designed and implemented scalable backend services using Laravel, FastAPI, Python and MySQL.</li><li>Developed and maintained RESTful APIs consumed by web and desktop applications.</li><li>Engineered an automated hard drive testing, grading and inventory processing platform that significantly reduced manual intervention and increased operational throughput.</li><li>Built hardware validation and diagnostic automation tools using Python, Linux utilities and shell scripting.</li><li>Refactored and modernized legacy applications, improving maintainability, scalability and long-term supportability.</li><li>Designed and optimized database schemas, queries and reporting systems for high-volume operational data.</li><li>Implemented CI/CD pipelines using Bitbucket Pipelines, improving deployment reliability and release consistency.</li><li>Developed offline-capable applications using IndexedDB and synchronization mechanisms.</li><li>Managed Linux-based servers and automated recurring operational tasks through shell scripting and cron jobs.</li><li>Participated in AWS-based infrastructure integration and deployment initiatives.</li><li>Worked closely with cross-functional teams and stakeholders across multiple regions to gather requirements, troubleshoot issues and deliver solutions aligned with business objectives.</li><li>Mentored junior developers and contributed to software engineering best practices and code review processes.</li></ul></div></li>
+    <li class="step alt"><div class="when">2024 – 2025</div><div class="detail"><h3>Part-time IT Instructor</h3><div class="org">STI College CDO, Cagayan de Oro, Philippines</div><ul><li>Delivered lectures and hands-on training on core IT subjects including Mobile App Development, Web Development and Programming Fundamentals.</li><li>Taught programming languages such as Java, Python and JavaScript, focusing on both theoretical concepts and practical application.</li><li>Guided students through building real-world projects using modern frameworks and tools in mobile and web development.</li><li>Provided mentorship and support on coding best practices, debugging techniques and software development methodologies.</li></ul></div></li>
+  </ol>
+</div></section>
+
+<section class="s work" id="work"><div class="wrap">
+  <h2>Selected work</h2>
+  <ul class="projects">
+    <li><h3>Cross-regional Time Tracking System</h3><p>Architecture and ongoing development of a system used by teams in both the Philippines and the U.S., backed by Laravel, FastAPI and MySQL.</p></li>
+    <li><h3>Hard drive testing and grading platform</h3><p>End-to-end automation that tests and grades drives and processes inventory with Python and Linux tooling.</p></li>
+    <li><h3>Offline-capable applications</h3><p>Apps that keep working without a connection, using IndexedDB and synchronization once the network returns.</p></li>
+    <li><h3>Legacy modernization</h3><p>Refactoring older systems, including Delphi applications, so they are easier to maintain, scale and support.</p></li>
+    <li><h3>Payroll and attendance tools</h3><p>Time Tracking and Salary Management applications for a diagnostic center.</p></li>
+  </ul>
+</div></section>
+
+<section class="s skills" id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <div class="groups">
+    <div><h3>Languages</h3><div class="chips"><span>PHP</span><span>JavaScript</span><span>Python</span><span>Java</span><span>HTML5</span><span>CSS3</span><span>Shell/Bash</span><span>Delphi</span></div></div>
+    <div><h3>Frameworks</h3><div class="chips"><span>Laravel</span><span>React</span><span>FastAPI</span><span>AngularJS</span><span>Electron</span><span>CodeIgniter</span><span>Vite</span></div></div>
+    <div><h3>Databases</h3><div class="chips"><span>MySQL</span><span>MongoDB</span><span>IndexedDB</span><span>Query optimization</span><span>Data migration</span></div></div>
+    <div><h3>DevOps</h3><div class="chips"><span>Linux</span><span>Docker</span><span>Bitbucket Pipelines</span><span>CI/CD</span><span>Cron</span><span>AWS</span></div></div>
+    <div><h3>Monitoring</h3><div class="chips"><span>Prometheus</span><span>ClickHouse</span><span>Log analysis</span><span>Performance monitoring</span></div></div>
+    <div><h3>Engineering</h3><div class="chips"><span>OOP</span><span>REST APIs</span><span>System integration</span><span>Software architecture</span><span>Legacy maintenance</span><span>Documentation</span></div></div>
+  </div>
+  <p class="muted" style="margin-top:2rem">Education: BS in Information Technology, STI College CDO, 2018. Tools: Git, VS Code, MySQL Workbench, Postman.</p>
+</div></section>
+
+<section class="s contact" id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <a class="mail" href="mailto:rafaelmirasol.1986@gmail.com">rafaelmirasol.1986@gmail.com</a>
+  <ul class="info">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+63 997 183 3289</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.800-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Carmen, Cagayan de Oro, Philippines 9000</li>
+  </ul>
+  <div class="foot">© 2026 Rafael Gustavo Mirasol</div>
+</div></section>
+</main>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var q=function(s){return [].slice.call(document.querySelectorAll(s))};
+
+  /* ---------- navigation state ---------- */
+  var links=q('.dots a'),map={},locked=false,lockTimer;
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  function setCurrent(id){
+    links.forEach(function(a){
+      if(map[id]===a)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');
+    });
+  }
+  function unlock(){locked=false;clearTimeout(lockTimer)}
+  links.forEach(function(a){
+    a.addEventListener('click',function(){
+      setCurrent(a.getAttribute('href').slice(1));
+      locked=true;clearTimeout(lockTimer);
+      lockTimer=setTimeout(unlock,1600);
+    });
+  });
+  window.addEventListener('scrollend',unlock);
+
+  /* the last section whose top has passed the middle of the screen is the current one; Home at the top */
+  var secs=q('main section');
+  function currentSection(){
+    var max=doc.scrollHeight-window.innerHeight;
+    if(window.scrollY<=4)return 'home';
+    if(max>0&&window.scrollY>=max-2)return 'contact';
+    var id='home',mid=window.innerHeight*.5;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=mid)id=s.id});
+    return id;
+  }
+
+  /* ---------- scroll progress + roadmap line ---------- */
+  var bar=document.querySelector('.progress i'),road=document.querySelector('.road-list'),ticking=false;
+  function onScroll(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      var max=doc.scrollHeight-window.innerHeight;
+      var p=max>0?Math.min(1,window.scrollY/max):0;
+      bar.style.transform='scaleX('+p.toFixed(4)+')';
+      if(!reduce&&road){
+        var r=road.getBoundingClientRect();
+        var t=Math.min(1,Math.max(0,(window.innerHeight*.6-r.top)/r.height));
+        road.style.setProperty('--p',t.toFixed(4));
+      }
+      if(!locked)setCurrent(currentSection());
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  /* ---------- entrance and scroll-reveal motion ---------- */
+  if(reduce||!('IntersectionObserver' in window))return;
+  doc.classList.add('js');
+
+  function mark(list,step,base,cls){
+    list.forEach(function(el,i){
+      el.classList.add('rv');
+      if(cls)el.classList.add(cls);
+      el.style.setProperty('--d',((base||0)+i*step).toFixed(2)+'s');
+    });
+  }
+  mark(q('.hero .who,.hero .name,.hero .role,.hero .btns'),.14,.05);
+  mark(q('.photo'),0,0,'rv-l');
+  mark(q('.about-grid > div > h2,.about-grid > div > p'),.1,.1);
+  mark(q('.facts div'),.12,.3,'rv-s');
+  mark(q('.details'),0,.45);
+  mark(q('.exp h2,.road h2,.work h2,.skills h2,.contact h2'),0,0);
+  mark(q('.pos li'),.1,.1,'rv-s');
+  q('.step').forEach(function(s){
+    var alt=s.classList.contains('alt');
+    mark([s.querySelector('.when')],0,0,alt?'rv-r':'rv-l');
+    mark([s.querySelector('.detail')],0,.12,alt?'rv-l':'rv-r');
+  });
+  mark(q('.projects li'),.09,.05);
+  mark(q('.groups > div'),.09,.05);
+  mark(q('.skills .muted'),0,.2);
+  mark(q('.mail'),0,.1);
+  mark(q('.info li'),.1,.25);
+  mark(q('.foot'),0,.4);
+
+  /* count-up for the three stats; final text stays 8+, 2, 4 */
+  var counters=q('.facts strong').map(function(el){
+    var txt=el.textContent,n=parseInt(txt,10);
+    el._n=n;el._suf=txt.replace(/^\d+/,'');
+    el.textContent='0'+el._suf;
+    return el;
+  });
+  function count(el){
+    var t0=null,dur=1100;
+    function f(t){
+      if(t0===null)t0=t;
+      var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
+      el.textContent=Math.round(el._n*e)+el._suf;
+      if(k<1)requestAnimationFrame(f);
+    }
+    requestAnimationFrame(f);
+  }
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;
+      el.classList.add('in');
+      var c=el.querySelector&&el.querySelector('strong');
+      if(c&&counters.indexOf(c)>-1)setTimeout(function(){count(c)},250);
+      io.unobserve(el);
+    });
+  },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  q('.rv,.step').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
